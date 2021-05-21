@@ -1,10 +1,16 @@
 var contact = require('../models/contact');
 
 exports.create = function(req, res) {
+  
   var contacts = contact(token(req));
-  res.json({
-    contact: contacts.create(req.body.contact)
-  }, 201);
+  if (contacts.map[req.params.contactId]){
+    res.send(500, 'Duplicate ID');
+  }
+  else{
+    res.json({
+      contact: contacts.create(req.body.contact)
+    }, 201);
+  }
 };
 
 exports.list = function(req, res){
