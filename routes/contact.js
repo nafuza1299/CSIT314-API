@@ -9,7 +9,7 @@ exports.create = function(req, res) {
       contact: contacts.create(req.body.contact)
     }, 201);
   } else {
-    res.send(500, 'Duplicate ID');
+    res.send(409);
   }
 };
 
