@@ -3,7 +3,7 @@ var contact = require('../models/contact');
 exports.create = function(req, res) {
   
   var contacts = contact(token(req));
-  var record = contacts.read(req.params.contactId);
+  var record = contacts.read(req.body.contact.id);
   if (!record) {
     res.json({
       contact: contacts.create(req.body.contact)
