@@ -48,9 +48,8 @@ exports.destroy = function(req, res) {
     res.send();
   }
   if (record) {
-    res.json({
-      contact: contacts.create(req.body.contact)
-    }, 201);
+    contacts.destroy(req.params.contactId);
+    res.send();
   } else {
     res.send(404);
   }
