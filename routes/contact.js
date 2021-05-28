@@ -41,17 +41,17 @@ exports.update = function(req, res) {
 exports.destroy = function(req, res) {
   var contacts = contact(token(req));
   var record = contacts.read(req.params.contactId);
-  if (req.params.contactId === 'jack') {
-    res.send(500, 'You cannot destroy Jack Bauer');
-  } else {
-    contacts.destroy(req.params.contactId);
-    res.send();
-  }
   if (record) {
     contacts.destroy(req.params.contactId);
     res.send();
   } else {
     res.send(404);
+  }
+  if (req.params.contactId === 'jack') {
+    res.send(500, 'You cannot destroy Jack Bauer');
+  } else {
+    contacts.destroy(req.params.contactId);
+    res.send();
   }
 };
 
